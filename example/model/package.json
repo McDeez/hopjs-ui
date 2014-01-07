@@ -10,6 +10,7 @@
     "jade": "*",
     "tracer": "*",
     "node-uuid": "*",
+    "hopjs": "*",
     "connect": "*"
   }
 }

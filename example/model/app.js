@@ -3,7 +3,7 @@
 var express= require('express');
 var path = require('path');
 
-var Hop = require("./../../index");
+var Hop = require("hopjs");
 
 /*
   This is express boiler plate, see http://expressjs.com/guide.html
@@ -175,6 +175,11 @@ Hop.defineTestCase("UserService.authenticate",function(test){
 });
 
 Hop.apiHook("/api/",app);
+
+Hop.use(require('../../index.js'));
+
+Hop.setUI(app, "/ui");
+
 
 app.listen(3000);
 
