@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>Simple UI</title>
+    <meta name="viewport" content="Width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/api/bs_3.0.3/css/bootstrap.css" />
+    <script src="/api/js/jquery.js"></script>
+    <script>_csrf=<%=JSON.stringify(_csrf)%>;</script>
+    <script src="<%=Hop.hopjsURL%>"></script>
+    <script src="<%=Hop.apiURL%>"></script>
+  </head>
+  <body>
+    <ul class="nav nav-tabs">
+      <% for(var objName in Hop.Objects){
+        var obj = Hop.Objects[objName];
+      %>
+      <li><a href="#<%=obj.name%>" data-toggle="tab"><%=obj.name%></a></li>
+      <% } %>
+    </ul>
+    <div class="tab-content">
+      <% for(var objName in Hop.Objects){
+          var obj = Hop.Objects[objName];
+      %>
+      <div class="tab-pane" id="<%=obj.name%>"><%=obj.name%>
+        <div class="dropdown">
+          <a class="btn dropdown-toggle" role="button" id="methodMenu<%=obj.name%>" data-toggle="dropdown" data-target="#" href="page.html">Methods<b class="caret"></b></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="methodMenu<%=obj.name%>">
+            <% for(var objMethod in obj.methods){
+                var currMethod = obj.methods[objMethod];
+            %>
+            <li role="presentation"><a role="menuitem" data-toggle="modal" data-target="#<%=currMethod.name%>" tabindex="-1" href="#"><%=currMethod.name%></a></li>
+            <% } %>
+          </ul>
+        </div>
+        <% for(var objMethod in obj.methods){
+            var currMethod = obj.methods[objMethod];
+        %>
+        <div class="modal fade" id="<%=currMethod.name%>" role="dialog" aria-labelledby="<%=currMethod.name%>Label" aria-hidden="true" >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="<%=currMethod.name%>Label"><%=currMethod.name%></h4>
+              </div><!-- /.modal-header -->
+              <div class="modal-body">
+                <form role="form">
+                  <% for(var param in currMethod.params){
+                      var currParam = currMethod.params[param];
+                  %>
+                  <label for="<%=currMethod.name%><%=param%>"><%=param%></label>
+                  <input type="text" class="form-control" id="<%=currMethod.name%><%=param%>">
+
+                  <% } %>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Submit</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div>
+        <% } %>
+      </div>
+      <% } %>
+    </div>
+    <script src="/api/bs_3.0.3/js/bootstrap.min.js"></script>
+  </body>
+</html>

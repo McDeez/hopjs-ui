@@ -1,0 +1,22 @@
+{
+  "name": "hopjs-ui",
+  "version": "0.0.1",
+  "description": "UI generation for HopJS defined interfaces",
+  "main": "index.js",
+  "keywords": [
+    "REST",
+    "RESTful",
+    "API",
+    "UI",
+    "HopJS"
+  ],
+  "dependencies": {
+    "fire-ts": ">=0.0.3",
+    "hopjs": "*",
+  },
+  "engine": "node 0.8.9",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/McDick/hopjs-ui.git"
+  }
+}
