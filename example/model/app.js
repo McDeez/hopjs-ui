@@ -176,9 +176,10 @@ Hop.defineTestCase("UserService.authenticate",function(test){
 
 Hop.apiHook("/api/",app);
 
+
 Hop.use(require('../../index.js'));
 
-Hop.setUI(app, "/ui");
+Hop.setUI("/ui", app);
 
 
 app.listen(3000);

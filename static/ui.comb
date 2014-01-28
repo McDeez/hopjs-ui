@@ -64,6 +64,6 @@
       </div>
       <% } %>
     </div>
-    <script src="static/bs_3.0.3/js/bootstrap.min.js"></script>
+    <script src="/bs_3.0.3/js/bootstrap.min.js"></script>
   </body>
 </html>
