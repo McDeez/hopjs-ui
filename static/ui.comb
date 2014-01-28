@@ -42,28 +42,67 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="<%=currMethod.name%>Label"><%=currMethod.name%></h4>
               </div><!-- /.modal-header -->
-              <div class="modal-body">
-                <form role="form">
-                  <% for(var param in currMethod.params){
-                      var currParam = currMethod.params[param];
-                  %>
-                  <label for="<%=currMethod.name%><%=param%>"><%=param%></label>
-                  <input type="text" class="form-control" id="<%=currMethod.name%><%=param%>">
+              <form role="form" id="<%=currMethod.name%>Form" action="<%=currMethod.fullPath%>" method="<%=currMethod.method%>">
+                <div class="modal-body">
+                    <% for(var param in currMethod.params){
+                        var currParam = currMethod.params[param];
+                    %>
+                    <label for="<%=currMethod.name%><%=param%>"><%=param%></label>
+                    <input type="text" class="form-control" name="<%=param%>"id="<%=currMethod.name%><%=param%>">
 
-                  <% } %>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Submit</button>
-              </div>
+                    <% } %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary smb">Submit</button>
+                </div>
+              </form>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
-        </div>
+        </div><!-- /.modal -->
         <% } %>
       </div>
       <% } %>
     </div>
+    <div class="modal fade" id="results" role="dialog" aria-labelledby="ResultsLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+       
+          </div><!-- /.modal-header -->
+          <div class="modal-body">
+
+          </div><!-- /.modal-body -->
+        </div><!-- /.modal-content-->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     <script src="/bs_3.0.3/js/bootstrap.min.js"></script>
+    <script>
+
+      $(".smb").click(function(e){
+        e.preventDefault();
+        console.log(e);
+        var currentForm = e.currentTarget.form;
+        console.log("currentForm:", $("#" + currentForm.id));
+        console.log("currentFormSerialized:", $("#" + currentForm.id).serialize());
+        if(currentForm.method == 'get' || currentForm.method == 'delete'){
+          $[currentForm.method](currentForm.action +  $("#" + currentForm.id).serialize(), function(data){
+            console.log('data:', data);  
+            $('#results .modal-body').empty();
+            $('#results .modal-body').append("<p>" + JSON.stringify(data));
+          }); 
+        }else{
+          $[currentForm.method](currentForm.action, $("#" + currentForm.id).serialize(), function(data){
+            console.log('data:', data); 
+            $('#results .modal-body').empty();
+            $('#results .modal-body').append("<p>" + JSON.stringify(data));
+          }); 
+        }
+        $('#results').modal('show');
+
+      });
+
+    </script>
   </body>
 </html>
