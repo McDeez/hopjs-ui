@@ -3,7 +3,7 @@
   <head>
     <title>Simple UI</title>
     <meta name="viewport" content="Width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/bs_3.0.3/css/bootstrap.css" />
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
     <script src="/api/js/jquery.js"></script>
     <script>_csrf=<%=JSON.stringify(_csrf)%>;</script>
     <script src="<%=Hop.hopjsURL%>"></script>
@@ -77,7 +77,7 @@
         </div><!-- /.modal-content-->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-    <script src="/bs_3.0.3/js/bootstrap.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     <script>
 
       $(".smb").click(function(e){
