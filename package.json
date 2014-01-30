@@ -1,6 +1,6 @@
 {
   "name": "hopjs-ui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "UI generation for HopJS defined interfaces",
   "main": "index.js",
   "keywords": [
